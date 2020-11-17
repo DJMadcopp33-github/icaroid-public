@@ -6,7 +6,7 @@ module.exports = {
     const calcEmbed = new MessageEmbed()
         .setColor('#900CC7')
         .setTitle('**Ping!**')
-        .setDescription('*Calaculating ping...*')
+        .setDescription('*Calculating ping...*')
         .setFooter('Powered by Icaroid!')
         .setTimestamp()
       message.reply(calcEmbed).then((resultMessage) => {

@@ -1,5 +1,5 @@
 const loadCommands = require('./load-commands')
-const { prefix } = require('../config.json')
+const { prefix } = '?'
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {

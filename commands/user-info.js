@@ -15,6 +15,7 @@ module.exports = {
         console.log(member)
     
         const embed = new MessageEmbed()
+          .setColor('#900CC7')
           .setAuthor(`User info for ${user.username}`, user.displayAvatarURL())
           .addFields(
             {

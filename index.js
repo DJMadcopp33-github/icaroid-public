@@ -10,6 +10,7 @@ const commandBase = require('./commands/command-base');
 mongoose.connect('mongodb+srv://Madcop:BuckyMaxMax112@discordjs.cplrv.azure.mongodb.net/Data', { useNewUrlParser: true, useUnifiedTopology: true})
 
 client.on('ready', async () => {
+    client.setMaxListeners(1000)
     console.log('The bot is online!')
     client.user.setActivity(`${client.guilds.cache.size} servers!`, { type: "WATCHING" })
 

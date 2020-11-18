@@ -5,7 +5,7 @@ module.exports = async () => {
   await mongoose.connect('mongodb+srv://Madcop:BuckyMaxMax112@discordjs.cplrv.azure.mongodb.net/Data', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    
+    useFindAndModify: true,
   })
   return mongoose
 }

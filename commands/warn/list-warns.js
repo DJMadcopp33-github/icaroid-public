@@ -1,5 +1,6 @@
 const mongo = require('../../mongo')
 const warnSchema = require('../../schemas/warn-schema')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
   commands: ['listwarnings', 'lw'],
@@ -32,8 +33,15 @@ module.exports = {
             timestamp
           ).toLocaleDateString()} for "${reason}"\n\n`
         }
+        
+        const warnEmbed = new MessageEmbed()
+            .setColor('#900CC7')
+            .setAuthor(`${target.username}`, target.displayAvatarURL())
+            .setDescription(reply)
+            .setFooter(`Requested by ${message.author.username}.`)
+            .setTimestamp()
 
-        message.reply(reply)
+        message.reply(warnEmbed)
       } finally {
         mongoose.connection.close()
       }

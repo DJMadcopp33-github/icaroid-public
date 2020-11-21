@@ -45,7 +45,7 @@ module.exports = {
     const beHelpEmbed = new MessageEmbed().setColor('#900CC7')
     .setAuthor(`Requested by ${message.author.username}!`, message.author.displayAvatarURL())
     .setDescription('Loading menu...')
-    .setFooter(`Need help? Join our support server.`).setFooter()
+    .setFooter(`Need help? Join our support server.`).setTimestamp()
 
     const helpEmbed = new MessageEmbed().setColor('#900CC7')
     .setAuthor(`Here are my commands ${message.author.username}!`, message.author.displayAvatarURL())

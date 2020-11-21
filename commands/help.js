@@ -42,6 +42,19 @@ module.exports = {
 
       reply += `**?${mainCommand}${args}** = ${description}\n`
     }
-    message.channel.send(reply)
+    const beHelpEmbed = new MessageEmbed().setColor('#900CC7')
+    .setAuthor(`Requested by ${message.author.username}!`, message.author.displayAvatarURL())
+    .setDescription('Loading menu...')
+    .setFooter(`Need help? Join our support server.`).setFooter()
+
+    const helpEmbed = new MessageEmbed().setColor('#900CC7')
+    .setAuthor(`Here are my commands ${message.author.username}!`, message.author.displayAvatarURL())
+    .setDescription(reply)
+    .setFooter(`Need help? Join our support server.`).setTimestamp()
+    message.channel.send(beHelpEmbed).then((resultMesssage) => {
+      setTimeout(function() {
+        resultMesssage.edit(helpEmbed)
+      }, 5000)
+    })
   },
 }

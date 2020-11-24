@@ -7,19 +7,16 @@ const command = require('./command');
 const mongoose = require('mongoose');
 const commandBase = require('./commands/command-base');
 const botInfoCmd = require('./commands/bot-info')
+const status = require('./statusHandler')
 
 mongoose.connect('mongodb+srv://Madcop:BuckyMaxMax112@discordjs.cplrv.azure.mongodb.net/Data', { useNewUrlParser: true, useUnifiedTopology: true})
 
 client.on('ready', async () => {
-    
-
-    const totalMembers = eval(client.guilds.cache.map(g => g.memberCount).join(' + '));
+    status(client)
 
     client.setMaxListeners(1000)
     console.log('The bot is online!')
-    client.user.setActivity(`${client.guilds.cache.size} servers and ${totalMembers} members!`, { type: "WATCHING" })
 
-    
     commandBase.loadPrefixes(client)
     loadCommand(client)
 })

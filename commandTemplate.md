@@ -4,7 +4,7 @@ module.exports = {
     permissionError: '',
     minArgs: 0,
     maxArgs: null,
-    callback: (message, arguments, text) => {
+    callback: (message, arguments, text, client) => {
         
     },
     permissions: '',

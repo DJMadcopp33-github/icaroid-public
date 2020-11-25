@@ -31,11 +31,11 @@ module.exports = {
             .setFooter('Answer')
             .setTimestamp()
 
-        message.channel.send(embedLoading).then((resultMessage) => {
-            setTimeout(function() {
-                resultMessage.edit(embedAnswer)
-              }, 5000)  
-        });
+            message.channel.send(embedLoading).then((resultMesssage) => {
+                setTimeout(function() {
+                  resultMesssage.edit(embedAnswer)
+                }, 5000)
+              })
     },
     permissions: '',
     requiredRoles: [],

@@ -4,8 +4,8 @@ module.exports = {
     commands: ['8ball'],
     expectedArgs: '<Question>',
     permissionError: '',
-    minArgs: 01,
-    maxArgs: 1,
+    minArgs: 1,
+    maxArgs: null,
     callback: (message, arguments, text) => {
         var ball = ([
             'It is certain',

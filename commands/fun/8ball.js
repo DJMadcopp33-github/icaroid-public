@@ -4,10 +4,10 @@ module.exports = {
     commands: ['8ball'],
     expectedArgs: '<Question>',
     permissionError: '',
-    minArgs: 1,
+    minArgs: 01,
     maxArgs: 1,
     callback: (message, arguments, text) => {
-        var RandomOneOf = ([
+        var ball = ([
             'It is certain',
             'Without a doubt',
             'Most likely',
@@ -18,7 +18,7 @@ module.exports = {
             'No',
             'Very doubtful',
             ]);
-        let gameval = Math.floor((Math.random() * RandomOneOf.length));
+        let gameval = Math.floor((Math.random() * ball.length));
         const embedLoading = new MessageEmbed()
             .setColor('#900CC7')
             .setAuthor(`8ball for ${message.author.username}`, message.author.displayAvatarURL())
@@ -27,13 +27,13 @@ module.exports = {
         const embedAnswer = new MessageEmbed()
             .setColor('#900CC7')
             .setAuthor(`8ball for ${message.author.username}`, message.author.displayAvatarURL())
-            .setDescription(RandomOneOf[gameval])
+            .setDescription(ball[gameval])
             .setFooter('Answer')
             .setTimestamp()
 
         message.channel.send(embedLoading).then((resultMessage) => {
             setTimeout(function() {
-                resultMesssage.edit(embedAnswer)
+                resultMessage.edit(embedAnswer)
               }, 5000)  
         });
     },

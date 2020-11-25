@@ -31,11 +31,7 @@ module.exports = {
             .setFooter('Answer')
             .setTimestamp()
 
-            message.channel.send(embedLoading).then((resultMesssage) => {
-                setTimeout(function() {
-                  resultMesssage.edit(embedAnswer)
-                }, 5000)
-              })
+            message.channel.send(embedAnswer)
     },
     permissions: '',
     requiredRoles: [],

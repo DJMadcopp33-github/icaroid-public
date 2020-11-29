@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js')
-
+const moment = require('moment')
 
 module.exports = {
     commands: ['userinfo', 'wi', 'whois'],
@@ -36,16 +36,16 @@ module.exports = {
         console.log(userStatus)
     
         const embed = new MessageEmbed()
-          .setColor('#900CC7')
+          .setColor('RANDOM')
           .setAuthor(`User info for ${user.username}`, user.displayAvatarURL())
           .addFields(
             {
               name: 'User',
-              value: `:white_small_square: **Name:** ${user.tag}\n:white_small_square: **Discriminator:** ${user.discriminator}\n:white_small_square: **Id:** ${user.id}\n:white_small_square: **Is bot:** ${user.bot}\n:white_small_square: **Account Created:** ${new Date(user.createdTimestamp).toLocaleDateString()}`,
+              value: `:white_small_square: **Name:** ${user.tag}\n:white_small_square: **Discriminator:** ${user.discriminator}\n:white_small_square: **Id:** ${user.id}\n:white_small_square: **Is bot:** ${user.bot}\n:white_small_square: **Account Created:** ${moment(user.createdAt)} (${moment(user.createdAt).fromNow()})`,
             },
             {
               name: 'Member',
-              value: `:white_small_square: **Joined Server:** ${new Date(member.joinedTimestamp).toLocaleDateString()}\n:white_small_square: **Nickname:** ${member.nickname || 'None'}\n:white_small_square: **Roles:** ${member.roles.cache ? member.roles.cache.map(r => `${r}`).join(' | ') : ""}`,
+              value: `:white_small_square: **Joined Server:** ${moment(member.joinedAt)} (${moment(member.joinedAt).fromNow()})\n:white_small_square: **Nickname:** ${member.nickname || 'None'}\n:white_small_square: **Roles:** ${member.roles.cache ? member.roles.cache.map(r => `${r}`).join(' | ') : ""}`,
             },
           )
           .addField('Presence', `:white_small_square: **Status:** ${status[userStatus]}`, true)

@@ -17,7 +17,7 @@ module.exports = {
 
     const coins = arguments[1]
     if (isNaN(coins)) {
-      message.reply('Please provide a valid numnber of coins.')
+      message.reply('Please provide a valid number of coins.')
       return
     }
 

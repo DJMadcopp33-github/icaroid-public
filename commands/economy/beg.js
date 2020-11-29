@@ -13,8 +13,9 @@ module.exports = {
     const randomCoins = Math.floor(Math.random() * 900) +1
 
     const workEmbed = new MessageEmbed()
-        .setColor('#900CC7')
-        .setTitle(`You done some begged and collected ${randomCoins}`)
+        .setColor('RANDOM')
+        .setAuthor(`Requested by ${message.author.username}!`, message.author.displayAvatarURL())
+        .setDescription(`You begged and collected ${randomCoins}`)
         .setFooter('Money!')
         .setTimestamp()
 

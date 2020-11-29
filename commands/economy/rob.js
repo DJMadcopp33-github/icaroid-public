@@ -19,7 +19,8 @@ module.exports = {
     const guildId = message.guild.id
     const userId = message.author.id
     const coins = await economy.getCoins(guildId, userId)
-    const randomCoins = Math.floor(Math.random() * coins / 100) +1
+    const targetCoins = await economy.getCoins(guildId, targetId)
+    const randomCoins = Math.floor(Math.random() * targetCoins / 100) +1
       let robArray = [
         `You got caught you have been fined ${randomCoins}`,
         `You successfully robbed ${randomCoins} from ${target}!`,

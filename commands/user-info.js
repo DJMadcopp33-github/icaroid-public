@@ -49,6 +49,12 @@ module.exports = {
             },
           )
           .addField('Presence', `:white_small_square: **Status:** ${status[userStatus]}`, true)
+          if(member.presence.clientStatus.desktop) active = "desktop"
+            if(member.presence.clientStatus.mobile) active = "mobile"
+            if(member.presence.clientStatus.web) active = "web"
+            if(st[active] !== undefined){
+            embed.addField(`Active on`, st[active], true)
+            }
 
     
         channel.send(embed)

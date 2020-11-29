@@ -1,5 +1,4 @@
 const mongo = require('../../mongo')
-const announceSchema = require('../../schemas/announcement-schema')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {

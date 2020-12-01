@@ -17,6 +17,7 @@ module.exports = {
       `You hacked into Microsoft and stole ${randomCoins} coin(s)`,
       `You hacked into a bank and stole ${randomCoins} coin(s)`,
       `You broke into a bank and stole ${randomCoins} coin(s)`,
+      `Placeholder`
       `You done some jobs for an illegal group they gave you ${randomCoins} coin(s)`,
       `You broke into a house and stole ${randomCoins} coin(s) worth of items!`,
       `You stole ${randomCoins} coin(s) from someone!`,

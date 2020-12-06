@@ -14,7 +14,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor('RANDOM')
             .setAuthor(`How gay is ${target.username}?`, target.displayAvatarURL())
-            .setDescription(`${target} is ${randomNumber}% gay!`)
+            .setDescription(`🏳️‍🌈 ${target} is ${randomNumber}% gay! 🏳️‍🌈`)
             .setFooter('This is a joke! Or is it?')
             .setTimestamp()
         

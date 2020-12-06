@@ -1,7 +1,14 @@
 const randomPuppy = require('random-puppy')
 const Discord = require('discord.js')
 const https = require('https');
-const url = 'https://www.reddit.com/r/meme/hot/.json?limit=100'
+const fetch = require('snekfetch')
+const memePages = [
+    'holup',
+    'memes',
+    'dankmemes',
+    'wholesomememes',
+    'memeeconomy'
+]
 
 module.exports = {
     commands: ['meme'],
@@ -10,54 +17,33 @@ module.exports = {
     minArgs: 0,
     maxArgs: 0,
     callback: async (message, arguments, text, client) => {
-        https.get(url, (result) => {
-            var body = ''
-            result.on('data', (chunk) => {
-                body += chunk
+        try {
+            const randomMemeNumber = Math.floor(Math.random() * memePages.length)
+            const randomMemeReddit = memePages[randomMemeNumber]
+            const { body } = await fetch
+                .get(`https://www.reddit.com/r/${randomMemeReddit}.json?sort=top&t=week`)
+                .query({ limit: 800 });
+            const allowed = message.channel.nsfw ? body.data.children : body.data.children.filter(post => !post.data.over_18);
+            if (!allowed.length) return message.channel.send('It seems we are out of fresh memes!, Try again later.');
+            const randomnumber = Math.floor(Math.random() * allowed.length)
+            var awards = allowed[randomnumber].total_award_received
+            if(awards === undefined){
+                awards = 0
+            }
+            const embed = new Discord.MessageEmbed()
+            .setColor(0x00A2E8)
+            .setTitle(allowed[randomnumber].data.title)
+            .setDescription("Posted by: " + allowed[randomnumber].data.author)
+            .setImage(allowed[randomnumber].data.url)
+            .setFooter(`👍${allowed[randomnumber].data.ups} 💬${allowed[randomnumber].data.num_comments} 🏆${awards}\nMeme from r/${randomMemeReddit}`)
+            message.channel.send(embed).then(m => {
+                m.react('👍')
+                m.react('🤣')
+                m.react('👎')
             })
-
-            result.on('end', () => {
-                var response = JSON.parse(body)
-                var index = response.data.children[Math.floor(Math.random() * 99) + 1].data
-
-                if (index.post_hint !== 'image') {
-
-                    var text = index.selftext
-                    const textembed = new Discord.MessageEmbed()
-                        .setTitle(subRedditName)
-                        .setColor(9384170)
-                        .setDescription(`[${title}](${link})\n\n${text}`)
-                        .setURL(`https://reddit.com/${subRedditName}`)
-
-                    message.channel.send(textembed)
-                }
-
-                var image = index.preview.images[0].source.url.replace('&amp;', '&')
-                var title = index.title
-                var link = 'https://reddit.com' + index.permalink
-                var subRedditName = index.subreddit_name_prefixed
-
-                if (index.post_hint !== 'image') {
-                    const textembed = new Discord.RichEmbed()
-                        .setTitle(subRedditName)
-                        .setColor(9384170)
-                        .setDescription(`[${title}](${link})\n\n${text}`)
-                        .setURL(`https://reddit.com/${subRedditName}`)
-
-                    message.channel.send(textembed)
-                }
-                console.log(image);
-                const imageembed = new Discord.MessageEmbed()
-                    .setTitle(subRedditName)
-                    .setImage(image)
-                    .setColor(9384170)
-                    .setDescription(`[${title}](${link})`)
-                    .setURL(`https://reddit.com/${subRedditName}`)
-                message.channel.send(imageembed)
-            }).on('error', function (e) {
-                console.log('Got an error: ', e)
-            })
-        })
+        } catch (err) {
+            return console.log(err);
+        }
     },
     permissions: '',
     requiredRoles: [],

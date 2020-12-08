@@ -5,7 +5,7 @@ module.exports = {
   commands: 'warn',
   minArgs: 2,
   expectedArgs: "<Target user's @> <reason>",
-  requiredRoles: ['Moderator'],
+  permissions: 'ADMINISTRATOR',
   callback: async (message, arguments) => {
     const target = message.mentions.users.first()
     if (!target) {
@@ -47,5 +47,6 @@ module.exports = {
         mongoose.connection.close()
       }
     })
+    message.channel.send(`Successfully warned ${target.username} for ${reason}`)
   },
 }

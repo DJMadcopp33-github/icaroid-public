@@ -14,8 +14,7 @@ module.exports = {
         const target = message.mentions.users.first() || message.author
         const targetId = target.id
 
-        let items = await db.fetch(message.author.id);
-        if(items === null) items = "Nothing"
+        let items = await economy.getItems(targetId)
 
         const invEmbed = new MessageEmbed()
             .setColor('RANDOM')

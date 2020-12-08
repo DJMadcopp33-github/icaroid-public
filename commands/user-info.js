@@ -21,10 +21,10 @@ module.exports = {
           "Watching"
         ],
           status = {
-          "online": `🟢 Online`,
-          "idle": `🟡 Idle`,
-          "dnd": `🔴 DND`,
-          "offline": `⚫ Offline`
+          "online": `<a:online:782559839750062090> Online`,
+          "idle": `<a:idle:782559892594491433> Idle`,
+          "dnd": `<a:dnd:782559921673601026> DND`,
+          "offline": `<a:offline:782559874797273109> Offline`
         },
           st = {
           "desktop": "🖥 Desktop",
@@ -48,13 +48,19 @@ module.exports = {
               value: `:white_small_square: **Joined Server:** ${moment(member.joinedAt)} (${moment(member.joinedAt).fromNow()})\n:white_small_square: **Nickname:** ${member.nickname || 'None'}\n:white_small_square: **Roles:** ${member.roles.cache ? member.roles.cache.map(r => `${r}`).join(' | ') : ""}`,
             },
           )
-          .addField('Presence', `:white_small_square: **Status:** ${status[userStatus]}`, true)
+          .addField(`Avatar`, `[Click Here](${user.displayAvatarURL()})`, true)
           if(member.presence.clientStatus.desktop) active = "desktop"
             if(member.presence.clientStatus.mobile) active = "mobile"
             if(member.presence.clientStatus.web) active = "web"
             if(st[active] !== undefined){
             embed.addField(`Active on`, st[active], true)
             }
+            if (member.presence.activity !== null) { 
+              embed.addField(`Playing Status`, 
+              `**Status:** ${status[member.presence.status]}
+              ${member.presence.game ? `**Game:** ${member.presence.activity.name}` : ''}
+              `, true) 
+          }
 
     
         channel.send(embed)

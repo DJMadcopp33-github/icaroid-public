@@ -18,7 +18,7 @@ module.exports = {
 
         if(text.toLowerCase() === 'test laptop') {
             if(coins < 75000) return message.channel.send(notEnough);
-            economy.addCoins(guildId, userId, 75000 * -1)
+            economy.addCoins(guildId, userId, 75000 * -1)  
             db.push(userId, "<:Laptop:784150324465893396>Test Laptop")
         } else if(text.toLowerCase() === 'car') {
             if(coins < 1000) return message.channel.send(notEnough);

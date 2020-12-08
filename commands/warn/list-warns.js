@@ -6,7 +6,7 @@ module.exports = {
   commands: ['listwarnings', 'lw'],
   minArgs: 1,
   expectedArgs: "<Target user's @>",
-  requiredRoles: ['Moderator'],
+  permissions: 'ADMINISTRATOR',
   callback: async (message, arguments, text) => {
     const target = message.mentions.users.first()
     if (!target) {
